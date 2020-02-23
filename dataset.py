@@ -35,7 +35,7 @@ class DataFolder(data.Dataset):
         img = torch.unsqueeze(img, 0)
 
         mask = cv2.imread(self.path_mask + img_id, cv2.IMREAD_UNCHANGED)
-        mask = torch.from_numpy(mask)
+        mask = torch.from_numpy(mask).type(torch.LongTensor)
 
         return img, mask, img_id 
 

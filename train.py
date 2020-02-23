@@ -51,7 +51,7 @@ if not os.path.exists('model'):
     print('Creating model directory: {}'.format('model'))
     os.makedirs('model')
 
-model = UNet(1, shrink=1)
+model = UNet(1, shrink=1).cuda()
 nets = [model]
 params = [{'params': net.parameters()} for net in nets]
 solver = optim.Adam(params, lr=lr)
@@ -68,6 +68,9 @@ for epoch in range(1, epochs+1):
 
         solver.zero_grad()
 
+        img = img.cuda()
+        mask = mask.cuda()
+
         ipdb.set_trace() 
 
         pred = model(img)
@@ -80,6 +83,9 @@ for epoch in range(1, epochs+1):
 
     with torch.no_grad():
         for batch_idx, (img, mask, _) in enumerate(valid_loader):
+
+            img = img.cuda()
+            mask = mask.cuda()
 
             pred = model(img)
             loss = criterion(pred, mask)
@@ -105,6 +111,9 @@ with torch.no_grad():
     eval_loss = []
     for batch_idx, (img, mask, _) in enumerate(eval_loader):
 
+        img = img.cuda()
+        mask = mask.cuda()
+
         pred = model(img)
         loss = criterion(pred, mask)
 
@@ -120,6 +129,9 @@ print('FINAL EVAL LOSS: {}'.format(torch.mean(eval_loss).item()))
 with torch.no_grad():
     all_loss = []
     for batch_idx, (img, mask, img_fns) in enumerate(all_loader):
+
+        img = img.cuda()
+        mask = mask.cuda()
 
         pred = model(img)
         loss = criterion(pred, mask)
