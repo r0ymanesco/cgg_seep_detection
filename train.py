@@ -99,7 +99,7 @@ for epoch in range(1, epochs+1):
     if epoch % 10 == 0:
         save_nets(nets, 'model')
 
-    if es.step(torch.mean(valid_loss)):
+    if es.step(torch.Tensor([np.mean(valid_loss)])):
         save_nets(nets, 'model')
         print('Early stopping criterion met')
         break
