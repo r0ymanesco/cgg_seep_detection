@@ -106,7 +106,7 @@ for epoch in range(1, epochs+1):
 
     break
 
-save_nets(nets, args)
+save_nets(nets, 'model')
 print('Training done... start evaluation')
 
 with torch.no_grad():
