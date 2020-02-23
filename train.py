@@ -68,6 +68,8 @@ for epoch in range(1, epochs+1):
 
         solver.zero_grad()
 
+        ipdb.set_trace() 
+
         pred = model(img)
         loss = criterion(pred, mask)
 
