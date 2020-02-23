@@ -29,7 +29,7 @@ class DataFolder(data.Dataset):
     def __getitem__(self, index):
         img_id = self.img_fns[index]
 
-        img = cv2.imread(self.path_img + img_id, cv2.IMREAD_UNCHANGED).astype(np.float64)
+        img = cv2.imread(self.path_img + img_id, cv2.IMREAD_UNCHANGED).astype(np.float32)
         img = cv2.normalize(img, None, 0, 1, cv2.NORM_MINMAX)
         img = torch.from_numpy(img)
         img = torch.unsqueeze(img, 0)
