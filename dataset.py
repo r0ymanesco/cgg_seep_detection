@@ -36,7 +36,6 @@ class DataFolder(data.Dataset):
 
         mask = cv2.imread(self.path_mask + img_id, cv2.IMREAD_UNCHANGED)
         mask = torch.from_numpy(mask)
-        mask = torch.unsqueeze(mask, 0)
 
         return img, mask, img_id 
 
