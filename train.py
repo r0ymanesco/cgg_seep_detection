@@ -20,7 +20,7 @@ epochs = 100
 lr = 0.001
 
 all_loader = data.DataLoader(
-    dataset=DataFolder('dataset/all_images_256/', 'dataset/all_masks_256/', 'train'),
+    dataset=DataFolder('dataset/all_images_256/', 'dataset/all_masks_256/', 'all'),
     batch_size=eval_batch_size,
     shuffle=False,
     num_workers=2
@@ -71,7 +71,7 @@ for epoch in range(1, epochs+1):
         img = img.cuda()
         mask = mask.cuda()
 
-        ipdb.set_trace() 
+        # ipdb.set_trace() 
 
         pred = model(img)
         loss = criterion(pred, mask)
