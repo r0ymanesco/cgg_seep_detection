@@ -142,7 +142,7 @@ with torch.no_grad():
 
         ipdb.set_trace()
 
-        pred_mask = torch.argmax(F.softmax(pred, dim=1), dim=1).numpy()
+        pred_mask = torch.argmax(F.softmax(pred, dim=1), dim=1)
         pred_mask = torch.chunk(pred_mask, chunks=eval_batch_size, dim=0)
         save_predictions(pred_mask, img_fns, 'output')
 
