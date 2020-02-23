@@ -14,8 +14,8 @@ from dataset import DataFolder
 import torch.utils.data as data
 from util import EarlyStopping, save_nets, save_predictions
 
-train_batch_size = 1
-eval_batch_size = 1
+train_batch_size = 16
+eval_batch_size = 16
 epochs = 100
 lr = 0.001
 
@@ -139,8 +139,6 @@ with torch.no_grad():
         loss = criterion(pred, mask)
 
         all_loss.append(loss.item())
-
-        
 
         pred_mask = torch.argmax(F.softmax(pred, dim=1), dim=1)
         pred_mask = torch.chunk(pred_mask, chunks=eval_batch_size, dim=0)

@@ -23,7 +23,7 @@ def save_predictions(preds, fns, out_dir):
         print('Creating output directory: {}'.format(out_dir))
         os.makedirs(out_dir)
 
-    ipdb.set_trace()
+    # ipdb.set_trace()
     for idx, pred in enumerate(preds):
         pred = torch.squeeze(pred, dim=0)
         flag = cv2.imwrite(out_dir + '/{}'.format(fns[idx]), pred.cpu().numpy())
