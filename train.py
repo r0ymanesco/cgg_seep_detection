@@ -79,7 +79,7 @@ for epoch in range(1, epochs+1):
         loss.backward()
         solver.step()
 
-        train_loss.append(loss)
+        train_loss.append(loss.item())
 
     with torch.no_grad():
         for batch_idx, (img, mask, _) in enumerate(valid_loader):
@@ -90,10 +90,10 @@ for epoch in range(1, epochs+1):
             pred = model(img)
             loss = criterion(pred, mask)
 
-            valid_loss.append(loss)
+            valid_loss.append(loss.item())
 
     print('[EPOCH {}/{}] Train Loss: {}; Valid Loss: {}'.format(
-        epoch, epochs, torch.mean(train_loss).item(), torch.mean(valid_loss).item()
+        epoch, epochs, np.mean(train_loss), np.mean(valid_loss)
     ))
 
     if epoch % 10 == 0:
@@ -117,13 +117,13 @@ with torch.no_grad():
         pred = model(img)
         loss = criterion(pred, mask)
 
-        eval_loss.append(loss)
+        eval_loss.append(loss.item())
 
         print('[EVALUATE {}/{}] Eval Loss: {}'.format(
             batch_idx, len(eval_loader), loss.item()
         ))
 
-print('FINAL EVAL LOSS: {}'.format(torch.mean(eval_loss).item()))
+print('FINAL EVAL LOSS: {}'.format(np.mean(eval_loss)))
 
 
 with torch.no_grad():
@@ -136,7 +136,7 @@ with torch.no_grad():
         pred = model(img)
         loss = criterion(pred, mask)
 
-        all_loss.append(loss)
+        all_loss.append(loss.item())
 
         pred_mask = torch.argmax(F.softmax(pred, dim=1), dim=1)
         pred_mask = torch.chunk(pred_mask, chunks=eval_batch_size, dim=0)
@@ -146,7 +146,7 @@ with torch.no_grad():
             batch_idx, len(all_loader), loss.item()
         ))
 
-print('FINAL PREDICT LOSS: {}'.format(torch.mean(all_loss).item()))
+print('FINAL PREDICT LOSS: {}'.format(np.mean(all_loss)))
 
 
     
