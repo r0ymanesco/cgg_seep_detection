@@ -104,6 +104,8 @@ for epoch in range(1, epochs+1):
         print('Early stopping criterion met')
         break
 
+    break
+
 save_nets(nets, args)
 print('Training done... start evaluation')
 
