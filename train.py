@@ -14,8 +14,8 @@ from dataset import DataFolder
 import torch.utils.data as data
 from util import EarlyStopping, save_nets, save_predictions
 
-train_batch_size = 32
-eval_batch_size = 32
+train_batch_size = 16
+eval_batch_size = 16
 epochs = 100
 lr = 0.001
 
