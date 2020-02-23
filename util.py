@@ -23,7 +23,7 @@ def save_predictions(preds, fns, out_dir):
         os.makedirs(out_dir)
 
     for idx, pred in enumerate(preds):
-        flag = cv2.imwrite(out_dir + '/{}'.format(fns[idx]), pred)
+        flag = cv2.imwrite(out_dir + '/{}'.format(fns[idx]), pred.numpy())
         assert flag == True 
 
 

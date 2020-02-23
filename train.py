@@ -122,7 +122,7 @@ with torch.no_grad():
         eval_loss.append(loss.item())
 
         print('[EVALUATE {}/{}] Eval Loss: {}'.format(
-            batch_idx, len(eval_loader), loss.item()
+            batch_idx+1, len(eval_loader), loss.item()
         ))
 
 print('FINAL EVAL LOSS: {}'.format(np.mean(eval_loss)))
@@ -140,12 +140,14 @@ with torch.no_grad():
 
         all_loss.append(loss.item())
 
-        pred_mask = torch.argmax(F.softmax(pred, dim=1), dim=1)
+        ipdb.set_trace()
+
+        pred_mask = torch.argmax(F.softmax(pred, dim=1), dim=1).numpy()
         pred_mask = torch.chunk(pred_mask, chunks=eval_batch_size, dim=0)
         save_predictions(pred_mask, img_fns, 'output')
 
         print('[PREDICT {}/{}] Loss: {}'.format(
-            batch_idx, len(all_loader), loss.item()
+            batch_idx+1, len(all_loader), loss.item()
         ))
 
 print('FINAL PREDICT LOSS: {}'.format(np.mean(all_loss)))
