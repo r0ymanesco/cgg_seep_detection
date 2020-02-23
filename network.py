@@ -89,7 +89,7 @@ class UNet(nn.Module):
         self.up1 = up(1024 // shrink, 256 // shrink)
         self.up2 = up(512 // shrink, 128 // shrink)
         self.up3 = up(256 // shrink, 64 // shrink)
-        self.up4 = up(64 // shrink, 8 // shrink)
+        self.up4 = up(128 // shrink, 8 // shrink)
 
     def forward(self, x):
         x1 = self.inc(x)
