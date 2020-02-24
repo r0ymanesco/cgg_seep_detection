@@ -4,7 +4,6 @@ import torch.nn.functional as F
 
 
 class double_conv(nn.Module):
-    '''(conv => BN => ReLU) * 2'''
     def __init__(self, in_ch, out_ch):
         super(double_conv, self).__init__()
         self.conv = nn.Sequential(
@@ -87,7 +86,7 @@ class UNet(nn.Module):
         self.up1 = up(1024 // shrink, 256 // shrink)
         self.up2 = up(512 // shrink, 128 // shrink)
         self.up3 = up(256 // shrink, 64 // shrink)
-        self.up4 = up(128 // shrink, 8 // shrink)
+        self.up4 = up(128 // shrink, 8)
 
     def forward(self, x):
         x1 = self.inc(x)
