@@ -1,2 +1,5 @@
 .vscode/
 dataset/
+__pycache__/
+model/
+output/
