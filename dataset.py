@@ -8,8 +8,6 @@ import numpy as np
 import random
 import cv2
 import torchvision 
-# from util import *
-import ipdb 
 
 class DataFolder(data.Dataset):
     def __init__(self, path_img, path_mask, mode):
