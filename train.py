@@ -16,7 +16,7 @@ from util import EarlyStopping, save_nets, save_predictions
 
 train_batch_size = 16
 eval_batch_size = 16
-epochs = 100
+epochs = 200
 lr = 0.001
 
 all_loader = data.DataLoader(
