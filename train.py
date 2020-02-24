@@ -47,10 +47,6 @@ eval_loader = data.DataLoader(
     num_workers=2
 )
 
-if not os.path.exists('model'):
-    print('Creating model directory: {}'.format('model'))
-    os.makedirs('model')
-
 model = UNet(1, shrink=1).cuda()
 nets = [model]
 params = [{'params': net.parameters()} for net in nets]
@@ -70,8 +66,6 @@ for epoch in range(1, epochs+1):
 
         img = img.cuda()
         mask = mask.cuda()
-
-        # ipdb.set_trace() 
 
         pred = model(img)
         loss = criterion(pred, mask)

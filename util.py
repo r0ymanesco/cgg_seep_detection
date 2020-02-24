@@ -12,6 +12,10 @@ import ipdb
 def save_nets(nets, model_dir):
     names = ['unet']
 
+    if not os.path.exists(model_dir):
+        print('Creating model directory: {}'.format(model_dir))
+        os.makedirs(model_dir)
+
     for net_idx, net in enumerate(nets):
         if net is not None:
             torch.save(net.state_dict(), '{}/{}.pth'.format(
@@ -23,7 +27,6 @@ def save_predictions(preds, fns, out_dir):
         print('Creating output directory: {}'.format(out_dir))
         os.makedirs(out_dir)
 
-    # ipdb.set_trace()
     for idx, pred in enumerate(preds):
         pred = torch.squeeze(pred, dim=0)
         flag = cv2.imwrite(out_dir + '/{}'.format(fns[idx]), pred.cpu().numpy())

@@ -22,7 +22,6 @@ class DataFolder(data.Dataset):
         self.img_fns = []
         for fn in glob.iglob(self.path_img + '*tif'):
             img_id = os.path.basename(fn)
-            # img_id = os.path.splitext(img_id)[0]
             self.img_fns.append(img_id)
         print('Number of {} images loaded: {}'.format(self.mode, len(self.img_fns)))
 
