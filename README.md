@@ -21,5 +21,5 @@ The loss function chosen for this task is the cross entropy loss. The reason thi
 The given dataset contains 760 synthetic aperture radar images. To train the network, the dataset is first split 80:10:10 between training, validation and evaluation, respectively. 
 
 ## Training Details
-Training was done on batch size 16, using the Adam optimiser with learning rate 0.001. The maximum epoch was set at 1000, with early stopping to prevent overfitting. The early stopping patience was 10 epochs, with minimum loss improvement 0.001. 
+Training was done on batch size 16, using the Adam optimiser with learning rate 0.001. The maximum epoch was set at 1000, with early stopping to prevent overfitting. The early stopping patience was 10 epochs, with minimum loss improvement 0.001 required. 
 
