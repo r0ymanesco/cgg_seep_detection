@@ -21,4 +21,4 @@ Prerequisits:
 * Pytorch
 * OpenCV 
 
-To run the code, simply type ```python train.py``` in the terminal with the prerequits above satisfied. 
+To run the code, simply type ```python train.py``` in the terminal with the prerequits above satisfied. The final predictions are made across the entire dataset, with the output saved as ```.tif``` files in the ```output/``` folder, just as with the masks provided. The trained model is saved in the ```model/``` directory with the name ```unet.pth```.
