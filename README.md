@@ -6,7 +6,7 @@ The objective is to produce a deep convolutional neural network (DCNN) model and
 ## Run
 Prerequisits:
 * Numpy
-* Pytorch
+* Pytorch 1.40
 * OpenCV 
 
 To run the code, simply type ```python train.py``` in the terminal with the prerequits above satisfied. The final predictions are made across the entire dataset, with the output saved as ```.tif``` files in the ```output/``` folder, just as with the masks provided. The trained model is saved in the ```model/``` directory with the name ```unet.pth```.
