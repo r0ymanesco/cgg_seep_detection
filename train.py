@@ -124,7 +124,6 @@ with torch.no_grad():
 
 print('FINAL EVAL LOSS: {:.4f}'.format(np.mean(eval_loss)))
 
-
 with torch.no_grad():
     all_loss = []
     for batch_idx, (img, mask, img_fns) in enumerate(all_loader):
