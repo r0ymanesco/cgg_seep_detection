@@ -11,7 +11,7 @@ import torch.nn.functional as F
 from network import UNet
 from dataset import DataFolder
 import torch.utils.data as data
-from util import EarlyStopping, save_nets, save_predictions
+from util import EarlyStopping, save_nets, save_predictions, load_best_weights
 from train_options import parser
 
 # os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"  
@@ -109,6 +109,8 @@ print('Training done... start evaluation')
 with torch.no_grad():
     eval_loss = []
     for batch_idx, (img, mask, _) in enumerate(eval_loader):
+
+        model = load_best_weights(model, 'model')
 
         img = img.cuda()
         mask = mask.cuda()

@@ -31,6 +31,10 @@ def save_predictions(preds, fns, out_dir):
         flag = cv2.imwrite(out_dir + '/{}'.format(fns[idx]), pred.cpu().numpy())
         assert flag == True 
 
+def load_best_weights(model, model_dir):
+    model.load_state_dict(torch.load('{}/unet.pth'.format(model_dir)))
+    return model 
+
 
 class EarlyStopping(object):
     def __init__(self, mode='min', min_delta=0, patience=10, percentage=False):
