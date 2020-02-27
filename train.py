@@ -88,7 +88,7 @@ for epoch in range(1, args.epochs+1):
             valid_loss.append(loss.item())
 
     print('[EPOCH {}/{}] Train Loss: {:.4f}; Valid Loss: {:.4f}'.format(
-        epoch, epochs, np.mean(train_loss), np.mean(valid_loss)
+        epoch, args.epochs, np.mean(train_loss), np.mean(valid_loss)
     ))
 
     if epoch % 10 == 0:
