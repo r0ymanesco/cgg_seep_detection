@@ -8,9 +8,9 @@ The given dataset contains 760 synthetic aperture radar images. To train the net
 
 ## Run
 Prerequisits:
-* Numpy
-* Pytorch 1.40
-* OpenCV 
+* Numpy 1.18.1
+* Pytorch 1.4.0
+* OpenCV 4.1.2 
 
 To run the code, simply run the shell script ```./train.sh``` in the terminal with the prerequits satisfied and the datasets in the folders described above. The final predictions are made across the entire dataset, with the output saved as ```.tif``` files in the ```output/``` folder, just as with the masks provided. The trained model is saved in the ```model/``` directory with the name ```unet.pth```.
 
