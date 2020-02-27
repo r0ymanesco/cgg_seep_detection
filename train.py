@@ -14,7 +14,7 @@ import torch.utils.data as data
 from util import EarlyStopping, save_nets, save_predictions
 from train_options import parser
 
-os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"  
+# os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"  
 os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 args = parser.parse_args()
