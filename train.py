@@ -110,7 +110,7 @@ for epoch in range(1, args.epochs+1):
             save_nets(nets, 'model')
             print('Saving current best model')
 
-        print('Current Valid L1: {}; Current best: {}; Bad epochs: {}'.format(
+        print('Current Valid L1: {:.4f}; Current best: {:.4f}; Bad epochs: {}'.format(
             np.mean(valid_loss), best.item(), bad_epochs
         ))
 
