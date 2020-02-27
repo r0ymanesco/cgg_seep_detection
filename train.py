@@ -12,36 +12,35 @@ from network import UNet
 from dataset import DataFolder
 import torch.utils.data as data
 from util import EarlyStopping, save_nets, save_predictions
+from train_options import parser
 
-train_batch_size = 16
-eval_batch_size = 16
-epochs = 1000
-lr = 0.001
+args = parser.parse_args()
+print(args)
 
 all_loader = data.DataLoader(
     dataset=DataFolder('dataset/all_images_256/', 'dataset/all_masks_256/', 'all'),
-    batch_size=eval_batch_size,
+    batch_size=args.eval_batch_size,
     shuffle=False,
     num_workers=2
 )
 
 train_loader = data.DataLoader(
     dataset=DataFolder('dataset/train_images_256/', 'dataset/train_masks_256/', 'train'),
-    batch_size=train_batch_size,
+    batch_size=args.train_batch_size,
     shuffle=True,
     num_workers=2
 )
 
 valid_loader = data.DataLoader(
     dataset=DataFolder('dataset/valid_images_256/', 'dataset/valid_masks_256/', 'validation'),
-    batch_size=eval_batch_size,
+    batch_size=args.eval_batch_size,
     shuffle=False,
     num_workers=2
 )
 
 eval_loader = data.DataLoader(
     dataset=DataFolder('dataset/eval_images_256/', 'dataset/eval_masks_256/', 'evaluate'),
-    batch_size=eval_batch_size,
+    batch_size=args.eval_batch_size,
     shuffle=False,
     num_workers=2
 )
@@ -49,12 +48,12 @@ eval_loader = data.DataLoader(
 model = UNet(1, shrink=1).cuda()
 nets = [model]
 params = [{'params': net.parameters()} for net in nets]
-solver = optim.Adam(params, lr=lr)
+solver = optim.Adam(params, lr=args.lr)
 
 criterion = nn.CrossEntropyLoss()
 es = EarlyStopping(min_delta=0.001, patience=10)
 
-for epoch in range(1, epochs+1):
+for epoch in range(1, args.epochs+1):
 
     train_loss = []
     valid_loss = []
