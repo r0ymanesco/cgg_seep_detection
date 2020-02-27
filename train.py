@@ -134,7 +134,7 @@ with torch.no_grad():
         all_loss.append(loss.item())
 
         pred_mask = torch.argmax(F.softmax(pred, dim=1), dim=1)
-        pred_mask = torch.chunk(pred_mask, chunks=eval_batch_size, dim=0)
+        pred_mask = torch.chunk(pred_mask, chunks=args.eval_batch_size, dim=0)
         save_predictions(pred_mask, img_fns, 'output')
 
         print('[PREDICT {}/{}] Loss: {:.4f}'.format(
