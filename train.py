@@ -107,11 +107,11 @@ for epoch in range(1, args.epochs+1):
         break
     else:
         if bad_epochs == 0:
-            save_nets(nets, args)
+            save_nets(nets, 'model')
             print('Saving current best model')
 
         print('Current Valid L1: {}; Current best: {}; Bad epochs: {}'.format(
-            valid_loss, best.item(), bad_epochs
+            np.mean(valid_loss), best.item(), bad_epochs
         ))
 
 # save_nets(nets, 'model')
