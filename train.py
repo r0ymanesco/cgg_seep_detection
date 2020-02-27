@@ -91,15 +91,29 @@ for epoch in range(1, args.epochs+1):
         epoch, args.epochs, np.mean(train_loss), np.mean(valid_loss)
     ))
 
-    if epoch % 10 == 0:
-        save_nets(nets, 'model')
+    # if epoch % 10 == 0:
+    #     save_nets(nets, 'model')
 
-    if es.step(torch.Tensor([np.mean(valid_loss)])):
-        save_nets(nets, 'model')
+    # if es.step(torch.Tensor([np.mean(valid_loss)])):
+    #     save_nets(nets, 'model')
+    #     print('Early stopping criterion met')
+    #     break
+
+
+    flag, best, bad_epochs = es.step(torch.Tensor([np.mean(valid_loss)]))
+    if flag:
+        # save_nets(nets, args)
         print('Early stopping criterion met')
         break
+    else:
+        if bad_epochs == 0:
+            save_nets(nets, args)
 
-save_nets(nets, 'model')
+        print('Current Valid L1: {}; Current best: {}; Bad epochs: {}'.format(
+            valid_loss, best.item(), bad_epochs
+        ))
+
+# save_nets(nets, 'model')
 print('Training done... start evaluation')
 
 with torch.no_grad():

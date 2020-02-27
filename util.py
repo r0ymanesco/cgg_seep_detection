@@ -48,14 +48,14 @@ class EarlyStopping(object):
 
     def step(self, metrics):
         if self.patience == 0:
-            return False 
+            return False, self.best, self.num_bad_epochs
             
         if self.best is None:
             self.best = metrics
-            return False
+            return False, self.best, 1
 
         if torch.isnan(metrics):
-            return True
+            return True, self.best, self.num_bad_epochs
 
         if self.is_better(metrics, self.best):
             self.num_bad_epochs = 0
@@ -64,9 +64,9 @@ class EarlyStopping(object):
             self.num_bad_epochs += 1
 
         if self.num_bad_epochs >= self.patience:
-            return True
+            return True, self.best, self.num_bad_epochs
 
-        return False
+        return False, self.best, self.num_bad_epochs
 
     def _init_is_better(self, mode, min_delta, percentage):
         if mode not in {'min', 'max'}:
