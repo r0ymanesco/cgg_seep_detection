@@ -21,5 +21,5 @@ The architecture of choice for this task is the U-Net, which is a fully convolut
 The loss function chosen for this task is the cross entropy loss. The reason this loss function is chosen is because the minimisation of the cross entropy corresponds to the maximum likelihood estimation of the network parameters with respect to the likelihood distribution of the decision given the dataset. 
 
 ## Training Details
-Training was done on batch size 16, using the Adam optimiser with learning rate 0.001. The maximum epoch was set at 1000, with early stopping to prevent overfitting. The early stopping patience was 10 epochs, with minimum loss improvement 0.001 required. These values can all be modified in the ```train.sh``` script.
+Training was done on batch size 16, using the Adam optimiser with learning rate 0.001. The maximum epoch was set at 1000, with early stopping to prevent overfitting. The early stopping patience was 10 epochs, with minimum loss improvement 0.001 required. The best model is saved in the ```model``` folder. These values can all be modified in the ```train.sh``` script.
 
