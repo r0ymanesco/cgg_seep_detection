@@ -51,7 +51,7 @@ params = [{'params': net.parameters()} for net in nets]
 solver = optim.Adam(params, lr=args.lr)
 
 criterion = nn.CrossEntropyLoss()
-es = EarlyStopping(min_delta=0.001, patience=10)
+es = EarlyStopping(min_delta=args.min_delta, patience=args.patience)
 
 for epoch in range(1, args.epochs+1):
 
