@@ -1,21 +1,14 @@
-import numpy as np 
-import os 
-import time 
-
-import torch 
+import numpy as np
+import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.optim.lr_scheduler as LS
-from torch.autograd import Variable
-import torch.nn.functional as F 
+import torch.nn.functional as F
 from network import UNet
 from dataset import DataFolder
 import torch.utils.data as data
 from util import EarlyStopping, save_nets, save_predictions, load_best_weights
 from train_options import parser
 
-# os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"  
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 args = parser.parse_args()
 print(args)
@@ -147,9 +140,3 @@ with torch.no_grad():
         ))
 
 print('FINAL PREDICT LOSS: {:.4f}'.format(np.mean(all_loss)))
-
-
-    
-
-
-
